@@ -52,15 +52,7 @@ h1 {
     border-radius: 10px;
 }
 
-#to-do-list {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.464);
-    padding: 20px 20px 0px 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    
 
-}
 
 .list {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.464);
