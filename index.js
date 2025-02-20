@@ -27,14 +27,16 @@ function AddList(text) {
 
 
 let list = document.getElementById('to-do-list')
-let li = document.createElement('div')
-li.classList.add('list')
+let containerList = document.createElement('div')
+containerList.classList.add('list')
 
 listas.forEach((item, index) => {
-
+    
+    let containerpText = document.createElement('div')
     let pText = document.createElement('p')
     pText.classList.add('p-list')
     pText.innerHTML = item
+    containerpText.classList.add('container-p-text')
 
     let divElements = document.createElement('div')
     divElements.classList.add('elements')
@@ -43,7 +45,7 @@ listas.forEach((item, index) => {
     let buttonEdit = document.createElement('button')
     let buttonDelete = document.createElement('button')
 
-    buttonCompleted.innerHTML = 'C'
+    buttonCompleted.innerHTML = ''
     buttonEdit.innerHTML = 'E'
     buttonDelete.innerText = 'D'
 
@@ -51,9 +53,10 @@ listas.forEach((item, index) => {
     divElements.appendChild(buttonEdit)
     divElements.appendChild(buttonDelete)
 
-    li.appendChild(pText)
-    li.appendChild(divElements)
-    list.appendChild(li)
+    containerpText.appendChild(pText)
+    containerList.appendChild(containerList)
+    containerList.appendChild(divElements)
+    list.appendChild(containerList)
 
 })
 
@@ -61,13 +64,14 @@ listas.forEach((item, index) => {
 // create list function with text and buttons
 function createList(text) {
     let list = document.getElementById('to-do-list')
-    let li = document.createElement('div')
-    li.classList.add('list')
+    let containerList = document.createElement('div')
+    containerList.classList.add('list')
 
-
+    let containerpText = document.createElement('div')
     let pText = document.createElement('p')
     pText.classList.add('p-list')
     pText.innerHTML = listas[listas.length - 1]
+    containerpText.classList.add('container-p-text')
 
     let divElements = document.createElement('div')
     divElements.classList.add('elements')
@@ -76,9 +80,7 @@ function createList(text) {
     let buttonEdit = document.createElement('button')
     let buttonDelete = document.createElement('button')
 
-    buttonCompleted.innerHTML = 'C'
-    buttonEdit.innerHTML = 'E'
-    buttonDelete.innerText = 'D'
+    
 
     divElements.appendChild(buttonCompleted)
     divElements.appendChild(buttonEdit)
@@ -88,9 +90,11 @@ function createList(text) {
     buttonEdit.classList.add('button-edit')
     buttonDelete.classList.add('button-delete')
 
-    li.appendChild(pText)
-    li.appendChild(divElements)
-    list.appendChild(li)
+
+    containerpText.appendChild(pText)
+    containerList.appendChild(containerpText)
+    containerList.appendChild(divElements)
+    list.appendChild(containerList)
 
     //button completed
     let controllButtonCompleted = true
@@ -141,7 +145,7 @@ function createList(text) {
         console.log('delete clicado')
 
         listas.pop()
-        li.remove()
+        containerList.remove()
 
         //alert('Tarefa concluída!')
     })
@@ -155,25 +159,29 @@ function createList(text) {
             input.type = 'text'
             input.addEventListener('click', () => { if (input) input.setSelectionRange(0, input.value.length) })
             input.value = pText.innerHTML
-            buttonEdit.innerHTML = 'Confirm'
-            li.style.flexDirection = 'row-reverse'
+            containerList.style.flexDirection = 'row-reverse'
+
+            buttonEdit.classList.toggle('button-edit-confirm')
 
             pText.style.display = 'none'
+            containerpText.style.display = 'none'
             buttonCompleted.style.display = 'none'
             buttonDelete.style.display = 'none'
 
-            li.appendChild(input)
+            containerList.appendChild(input)
             controllButtonEdit = false
 
         } else if (controllButtonEdit === false) {
             pText.style.display = 'block'
-            li.style.flexDirection = 'row'
+            containerList.style.flexDirection = 'row'
             pText.innerHTML = input.value
             input.style.display = 'none'
+            
 
 
+
+            containerpText.style.display = 'flex'
             buttonCompleted.style.display = 'block'
-            buttonEdit.innerHTML = 'E'
             buttonDelete.style.display = 'block'
 
             controllButtonEdit = true
