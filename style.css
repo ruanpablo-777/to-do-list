@@ -1,9 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+@keyframes back {
+    0% {
+        background-position: 0% ;
+        
+        
+    } 100% {
+        background-position: 50% ;
+    }
+}
+@keyframes animat {
+    0% {
+        opacity: 0;
+        
 
+    } 100% {
+        opacity: 1;
+    }
+}
 body {
     width: 100vw;
     height: 100vh;
@@ -11,8 +31,28 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 20px;
-    background-color: #333;
+    background: linear-gradient(to left, #0a0716,
+    /* Deep Violet */
+    #000c19,
+    /* Electric Blue */
+    #002523,
+    /* Teal Glow */
+    #250025,
+    /* Dark Magenta */
+    #001c1c);
+    background-size: 400% 100%;
+
+    animation: animat 10s  linear;
+    animation: back 40s infinite linear;
+    font-family: "Roboto", serif;
+
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+
 }
+    
 
 #content {
     border-radius: 10px;
@@ -35,8 +75,13 @@ h1 {
     border-radius: 5px;
     outline: none;
     padding: 10px;
+    border: 1px solid;
 
 
+
+}
+#input:focus {
+    border: 1px solid #333;
 }
 
 #add {
@@ -62,23 +107,35 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    max-width: auto    ;
+    max-width: auto;
+    animation: animate 0.5s  linear;
+
     
 }
 .p-list {
     text-wrap: wrap;
     word-wrap: break-word;
+    width: 100%;
+    text-align: justify;
 }
 
 .container-p-text {
-    width: 80%;
-    max-width: 500px;
+    width: auto;
+    max-width: 70%;
     display: flex;
-    align-items: center;
+}
+@media screen and (max-width: 700px) {
+    .elements {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+    }
 }
 
 .elements {
     width: 150px;
+    height: auto;
     display: flex;
     justify-content: space-around;
     gap: 20px;

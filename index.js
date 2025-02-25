@@ -2,17 +2,28 @@
 
 let input = document.getElementById('input')
 let buttonAdd = document.getElementById('add')
+let controllInput = true
 
 let listas = []
 
 buttonAdd.addEventListener('click', () => {
     AddList()
 })
-buttonAdd.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter')
-        AddList()
 
-})
+    document.addEventListener('keydown', (e) => {
+        if (controllInput) {
+        if (input.value.trim()) {
+        if (e.key === 'Enter')
+            AddList()
+        } else if (!input.value.trim() && e.key === 'Enter') {
+            alert('Por favor digite alguma tarefa!')
+        }
+    }
+    })
+
+
+
+
 
 function AddList(text) {
     if (input.value.trim() === "") {
@@ -23,7 +34,9 @@ function AddList(text) {
         listas.push(text)
         createList(text)
     }
+    input.value = ''
 }
+
 
 
 let list = document.getElementById('to-do-list')
@@ -35,7 +48,7 @@ listas.forEach((item, index) => {
     let containerpText = document.createElement('div')
     let pText = document.createElement('p')
     pText.classList.add('p-list')
-    pText.innerHTML = item
+    pText.textContent = item
     containerpText.classList.add('container-p-text')
 
     let divElements = document.createElement('div')
@@ -70,7 +83,7 @@ function createList(text) {
     let containerpText = document.createElement('div')
     let pText = document.createElement('p')
     pText.classList.add('p-list')
-    pText.innerHTML = listas[listas.length - 1]
+    pText.textContent = listas[listas.length - 1]
     containerpText.classList.add('container-p-text')
 
     let divElements = document.createElement('div')
@@ -104,6 +117,8 @@ function createList(text) {
             list.querySelectorAll('.list').forEach((item, index) => {
                 item.addEventListener('click', () => {
                     pText.style.textDecoration = 'line-through'
+                    pText.style.color = 'gray'
+                    
                 })
             })
             controllButtonCompleted = false
@@ -113,6 +128,8 @@ function createList(text) {
             list.querySelectorAll('.list').forEach((item, index) => {
                 item.addEventListener('click', () => {
                     pText.style.textDecoration = 'none'
+                    pText.style.color = 'black'
+
                 })
             })
             controllButtonCompleted = true
@@ -131,21 +148,28 @@ function createList(text) {
 
     buttonEdit.addEventListener('click', (e) => {
         buttonEditFunction()
+        controllInput = false
     })
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+        let EnterIsTrue = e.key === 'Enter'
+        if (EnterIsTrue && controllInput == false ) {
             buttonEditFunction()
-
+            controllInput = true
         }
-        //colocar um input para editar o texto da tarefa vc acha que é uma boa ideia?
     })
 
     // button delete
     buttonDelete.addEventListener('click', () => {
         console.log('delete clicado')
+        console.log("text",containerList.textContent)
+        listas.map((item, index) => {
+            if (item === containerList.textContent) {
+                listas.splice(index, 1)
+               // console.log("listas",item)
+               containerList.remove()
+            }
+        })
 
-        listas.pop()
-        containerList.remove()
 
         //alert('Tarefa concluída!')
     })
@@ -189,3 +213,6 @@ function createList(text) {
     }
 }
 
+document.addEventListener('click', (e) => {
+    console.log(listas)
+})
