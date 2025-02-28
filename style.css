@@ -155,11 +155,53 @@ h1 {
     background-size: 100% 100%;
     border: none;
 }
-.button-edit-confirm {
+.carro {
+     .button-edit-confirm {
     border-radius: 10%;
     width: 30px;
     height: 30px;
+    }
+
+     .p-list {
+        display: none;
+    }
+
+     .container-p-text {
+        display: none;
+    }
+     .button-completed {
+        display: none;
+    }
+     .button-delete {
+        display: none;
+    }
+    .list {
+        flex-direction: row-reverse;
+    }
+    
 }
+
+.carro-false {
+    .p-list {
+        display: block;
+        color: black;
+    }
+
+     .container-p-text {
+        display: flex;
+    }
+     .button-completed {
+        display: block;
+    }
+     .button-delete {
+        display: block;
+    }
+    .list {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
 .button-delete {
     width: 30px;
     height: 30px;
@@ -168,3 +210,8 @@ h1 {
     border: none;
 }
 
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
