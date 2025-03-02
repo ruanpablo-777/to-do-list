@@ -74,7 +74,7 @@ function createList(text) {
         input.value = pText.innerText
         containerList.appendChild(input)
         document.addEventListener('change', () => {
-            pText.textContent = input.value
+            if (input.value) pText.textContent = input.value
 
         })
     }
