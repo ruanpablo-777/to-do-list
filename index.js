@@ -5,15 +5,15 @@ let controllInput = true, listas = []
 
 buttonAdd.addEventListener('click', AddList)
 document.addEventListener('keydown', (e) => {
-    if ( e.key === 'Enter') AddList()
+    if (e.key === 'Enter') AddList()
 })
 
 function AddList() {
     const text = input.value.trim()
     if (!text) return alert('Por favor digite alguma tarefa!')
-        listas.push(text)
-        createList(text)
-        input.value = ''
+    listas.push(text)
+    createList(text)
+    input.value = ''
 }
 
 // create list function with text and buttons
@@ -34,8 +34,8 @@ function createList(text) {
     let buttonCompleted = document.createElement('button')
     let buttonEdit = document.createElement('button')
     let buttonDelete = document.createElement('button')
-  
-    let buttons = [buttonCompleted, buttonDelete, buttonEdit].forEach(bnt => divElements.appendChild(bnt)
+
+    let buttons = [buttonCompleted, buttonEdit ,buttonDelete].forEach(bnt => divElements.appendChild(bnt)
     )
 
     buttonCompleted.classList.add('button-completed')
@@ -46,40 +46,36 @@ function createList(text) {
     containerList.append(containerpText, divElements)
     list.appendChild(containerList)
 
-    //button completed
-    buttonCompleted.addEventListener('click', () => {
-            list.querySelectorAll('.list').forEach((item, index) => {
-                item.addEventListener('click', () => {
-                   pText.classList.toggle("completed")
-                })})
-
     // button edit
-    let controllButtonEdit = true
     let input = document.createElement('input')
-    buttonEdit.addEventListener('click', (e) => { buttonEditFunction(input)})
+    buttonEdit.addEventListener('click', () => {
+        buttonEditFunction(input); console.log('clickado')
+    })
 
     // button delete
     buttonDelete.addEventListener('click', () => {
-        listas.filter(listas => containerList.textContent !== listas) {}
-                listas.splice(index, 1)
-                containerList.remove()
-            
-        })
+        let result = listas.filter((lista) => lista !== pText.textContent)
+        listas = result
+        containerList.remove()
+    })
+
+    //button completed
+    buttonCompleted.addEventListener('click', () => {
+        pText.classList.toggle("completed")
+        containerList.classList.toggle("list-completed")
     })
 
     function buttonEditFunction(input) {
+        containerList.classList.toggle('carro')
         input.classList.add('input-edit')
-            input.style.display = 'block'
-            input.type = 'text'
-            input.addEventListener('click', () => { if (input) input.setSelectionRange(0, input.value.length) })
-            input.value = pText.textContent
+        input.type = 'text'
+        input.addEventListener('click', () => { if (input) input.setSelectionRange(0, input.value.length) })
 
-            containerList.style.flexDirection = 'row-reverse'
-            list.classList.toggle('carro')
-            containerpText.style.display = 'none'
-            containerList.appendChild(input)
-            controllButtonEdit = false
-        
-        
+        input.value = pText.innerText
+        containerList.appendChild(input)
+        document.addEventListener('change', () => {
+            pText.textContent = input.value
+
+        })
     }
 }
