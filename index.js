@@ -57,11 +57,12 @@ function createList(text) {
         let result = listas.filter((lista) => lista !== pText.textContent)
         listas = result
         containerList.remove()
+        console.log(containerList)
     })
 
     //button completed
     buttonCompleted.addEventListener('click', () => {
-        pText.classList.toggle("completed")
+       // pText.classList.toggle("completed")
         containerList.classList.toggle("list-completed")
     })
 
