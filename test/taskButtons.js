@@ -1,5 +1,5 @@
 function buttonCompletedFunction(task) {
-    return task.classList.toggle("list-completed")
+        task.classList.toggle("list-completed")
 }
 
 function buttonE(task, input) {
@@ -12,5 +12,21 @@ function buttonE(task, input) {
     task.appendChild(input)
     document.addEventListener('change', () => {
         if (input.value) pText.textContent = input.value
-        })
-    }
+    })
+}
+
+function buttonDeleteFunction(todoList, listas, tasks) {
+    let textTasks = todoList.querySelectorAll('.text-task')
+    listas.forEach((item, index) => {
+        item.task = `<p class="text-task">${textTasks[index].textContent}</p>
+        <div class="buttons">
+        <button class="button-completed" type="button"></button>
+        <button class="button-edit" type="button"></button>
+        <button id="del" class="button-delete" type="button"></button>
+        </div>`
+    })
+    
+    let result = listas.filter((lista, index) => lista.task !== tasks.innerHTML)    
+    tasks.remove()
+    return listas = result
+}

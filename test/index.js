@@ -12,7 +12,6 @@ document.addEventListener('keydown', (e) => {
 function AddList() {
     const text = input.value.trim()
     if (!text) return alert('Por favor digite alguma tarefa!')
-  //  listas.push(text)
     createList(text)
     input.value = ''
 }
@@ -21,32 +20,57 @@ function AddList() {
 function createList(text) {
     let task = document.createElement('div')
     task.classList.add('list')
-    listas.push( `<p class="text-task">${text}</p>
-                    <div class="buttons">
-                        <button class="button-completed" type="button">c</button>
-                        <button class="button-edit" type="button">e</button>
-                        <button id="del" class="button-delete" type="button">d</button>
-                    </div>`)
+    
+    listas.push({
+        id: 1,
+        task: `<p class="text-task"></p>
+        <div class="buttons">
+        <button class="button-completed" type="button"></button>
+        <button class="button-edit" type="button"></button>
+        <button id="del" class="button-delete" type="button"></button>
+        </div>`,
+        filter: false
+    })
+    
+    listas.forEach((item) => {
+        task.innerHTML = item.task
+        todoList.appendChild(task)   
+        
+    })
+    let textTasks = task.querySelector('.text-task')
+    textTasks.textContent = text
+    
 
-   listas.forEach((item, index) => {
-        task.innerHTML = item
-        todoList.appendChild(task)
-   })
-  
-   let buttonCompleted = task.querySelector('.button-completed')
-   buttonCompleted.addEventListener('click', () => {
-        buttonCompletedFunction(task)
-   })
+    let filterCompleted = document.querySelector('.concluded')
+    let filterNotCompleted = document.querySelector('.not-concluded')
+    let filterAll = document.querySelector('.all')
 
-   let input = document.createElement('input')
-   let buttonEdit = task.querySelector('.button-edit')
-   buttonEdit.addEventListener('click', () => {
-       buttonE(task,input)
-   })   
+    let buttonCompleted = task.querySelector('.button-completed')
+    let buttonEdit = task.querySelector('.button-edit')
+    let buttonDelete = task.querySelector('.button-delete')
+    let input = document.createElement('input')
 
-   let buttonDelete = task.querySelector('.button-delete')
-   buttonDelete.addEventListener('click', () => {
-         task.remove()
-   })
+
+    filterCompleted.addEventListener('click', () => {
+        filterCompletedFunction(listas)
+    })
+    filterNotCompleted.addEventListener('click', () => { 
+        filterNotCompletedFunction(listas)
+    })
+
+    filterAll.addEventListener('click', () => {
+        filterAllTask(listas)
+    })
+   
+
+    buttonCompleted.addEventListener('click', () => {
+        buttonCompletedFunction(task)})
+
+    buttonEdit.addEventListener('click', () => {
+        buttonE(task, input)})
+
+    buttonDelete.addEventListener('click', () => {
+        listas = buttonDeleteFunction(todoList, listas, task)})
+    console.log(listas)
 }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./test/style.css">
     <title>TO DO LIST</title>
 </head>
 
@@ -16,16 +16,28 @@
         <section>
             <div id="container">
                 <input type="text" name="input" id="input" placeholder="Digite aqui sua tarefa...">
-                <button type="submit" id="add"  value="Adicionar">Adicionar</button>
+                <button type="submit" id="add" value="Adicionar">Adicionar</button>
+            </div>
+            <div class="filter">
+                <button class="all">
+                    Todas
+                </button>
+                <button class="not-concluded">
+                    Não Concluídas
+                </button>
+                <button class="concluded">
+                    Concluídas
+                </button>
             </div>
             <div id="to-do-list" class="to-do-list">
                 
-               
+         
             </div>
         </section>
     </div>
 
 </body>
-<script src="index.js"></script>
-
+<script src="./test/index.js"></script>
+<script src="./test/taskButtons.js"></script>
+<script src="./test/filter.js"></script>
 </html>
