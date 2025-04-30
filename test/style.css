@@ -94,10 +94,13 @@ h1 {
 }
 
 .list {
+    width: 100%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.464);
     padding: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: start;
     margin-bottom: 20px;
     max-width: auto;
     animation: animate 0.5s linear;
@@ -106,12 +109,13 @@ h1 {
 
 }
 
-.p-list {
+.text-task {
+    max-width: 100%;
     text-wrap: wrap;
     word-wrap: break-word;
-    width: 100%;
     text-align: justify;
     display: block;
+    margin-bottom: 10px;
 }
 
 .container-p-text {
@@ -129,12 +133,14 @@ h1 {
     }
 }
 
-.elements {
-    width: 150px;
+.buttons {
+    width: 100%;
     height: auto;
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    gap: 10px;
+    justify-content: end;
+    align-items: end;
+    
 }
 
 .button-completed {
@@ -160,7 +166,7 @@ h1 {
     display: none;
 }
 
-.carro {
+.change {
     display: flex;
     flex-direction: row-reverse;
     background-color: #007BFF;
@@ -213,7 +219,6 @@ h1 {
     background-image: url('../assets/delete.png');
     background-size: 100% 100%;
     border: none;
-    border-radius: 50%;
 
 }
 
@@ -251,17 +256,19 @@ h1 {
     & button {
         background-color: #dadada;
         width: 20vw;
-        height: 30px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 10px;
+        border: none;
+        cursor: pointer;
+
     }
 }
 
 
 
-    .lis {
+    .hide {
         display: none;
     }
-

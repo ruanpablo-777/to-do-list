@@ -1,32 +1,41 @@
-function buttonCompletedFunction(task) {
+function buttonCompletedFunction(task, listas) {
         task.classList.toggle("list-completed")
-}
+        listas.forEach((item) => {
+            if (item.task === task.firstElementChild.innerHTML && item.filterCompleted === false) {
+                item.filterCompleted = true
+            } else if (item.task === task.firstElementChild.innerHTML && item.filterCompleted === true) {
+                item.filterCompleted = false
+            }
+        })
+        return listas
+    }
 
-function buttonE(task, input) {
-    let pText = task.querySelector('.text-task')
-    task.classList.toggle('carro')
+function buttonE(task,listas, input) {
+    let todoList = document.querySelectorAll('.list')
+    let textTask = task.querySelector('.text-task')
+    task.classList.toggle('change')
     input.classList.add('input-edit')
     input.type = 'text'
-    input.addEventListener('click', () => { if (input) input.setSelectionRange(0, input.value.length) })
-    input.value = pText.innerText
+    input.value = textTask.innerText
     task.appendChild(input)
-    document.addEventListener('change', () => {
-        if (input.value) pText.textContent = input.value
-    })
+    input.addEventListener('click', () => {if (input) input.setSelectionRange(0, input.value.length)})
+    document.addEventListener('change', () => {if (input.value) textTask.textContent = input.value})
+    
+    todoList.forEach((item , index) => {
+        if( item.firstElementChild.innerHTML !== listas[index].task) {
+            listas[index].task = input.value }})
+
+    return listas
 }
 
-function buttonDeleteFunction(todoList, listas, tasks) {
-    let textTasks = todoList.querySelectorAll('.text-task')
-    listas.forEach((item, index) => {
-        item.task = `<p class="text-task">${textTasks[index].textContent}</p>
-        <div class="buttons">
-        <button class="button-completed" type="button"></button>
-        <button class="button-edit" type="button"></button>
-        <button id="del" class="button-delete" type="button"></button>
-        </div>`
+function buttonDeleteFunction( listas, tasks) {
+    let idCounter = 0
+    let result = listas.filter((lista) => lista.task !== tasks.firstElementChild.innerHTML)
+    result.forEach((item, index) => {
+        item.id = idCounter += 1
     })
-    
-    let result = listas.filter((lista, index) => lista.task !== tasks.innerHTML)    
     tasks.remove()
+    console.log(result)
     return listas = result
+    
 }
